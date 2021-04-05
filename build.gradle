@@ -10,15 +10,172 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    // for ARRP
+    maven {
+        url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+        content {
+            includeGroup "net.devtech"
+        }
+    }
+    // for Cardinal Components
+    maven {
+        name = "Ladysnake Libs"
+        url = "https://dl.bintray.com/ladysnake/libs"
+        content {
+            includeGroup "io.github.onyxstudios"
+            includeGroup "io.github.onyxstudios.Cardinal-Components-API"
+        }
+    }
+    // for Patchouli
+    maven {
+        url 'https://maven.blamejared.com'
+        content {
+            includeGroup "vazkii.patchouli"
+        }
+    }
+    // for LBA
+    maven {
+        name = "BuildCraft"
+        url = "https://mod-buildcraft.com/maven"
+        content {
+            includeGroup "alexiil.mc.lib"
+        }
+    }
+    // for HWYLA
+    maven {
+        url "https://maven.tehnut.info"
+        content {
+            includeGroup "mcp.mobius.waila"
+        }
+    }
+    // for AE2
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev"
+        content {
+            includeGroup "appeng"
+        }
+    }
+    maven {
+        url "https://maven.shedaniel.me"
+    }
+    maven {
+        url "https://maven.terraformersmc.com"
+        content {
+            includeGroup "com.terraformersmc"
+        }
+    }
+    // for MI, Astromine, KJS and Indrev
+    maven {
+        name 'Jitpack'
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.KubeJS-Mods"
+            includeGroup "com.github.Mixinors.Astromine"
+            includeGroup "com.github.GabrielOlvH"
+            includeGroup "com.github.Technici4n"
+            /* To build indrev */
+            includeGroup "com.github.Draylar"
+            /* To build astromine */
+            includeGroup "com.github.vini2003"
+            includeGroup "com.github.Shnupbups"
+            // things
+            includeGroup "com.github.lambdaurora"
+        }
+    }
+    // to build indrev
+    maven {
+        name = "CottonMC"
+        url = "https://server.bbkr.space/artifactory/libs-release"
+        content {
+            includeGroup "io.github.cottonmc"
+        }
+    }
+    // to build Astromine
+    maven {
+        name = "Earthcomputer"
+        url = "https://dl.bintray.com/earthcomputer/mods"
+        content {
+            includeGroup "net.earthcomputer"
+        }
+    }
+    maven {
+        name = "Wrenchable"
+        url = "https://dl.bintray.com/zundrel/wrenchable"
+        content {
+            includeGroup "com.zundrel"
+        }
+    }
+    maven {
+        name = "dblsaiko"
+        url = "https://maven.dblsaiko.net/"
+    }
+    maven {
+        name = "Technici4n"
+        url = "https://raw.githubusercontent.com/Technici4n/Technici4n-maven/master/"
+        content {
+            includeGroup "net.fabricmc.fabric-api"
+            includeGroup "dev.technici4n"
+        }
+    }
+    // for reach entity attributes, required by Magna
+    maven {
+        url = "https://maven.jamieswhiteshirt.com/libs-release/"
+        content {
+            includeGroup "com.jamieswhiteshirt"
+        }
+    }
+    maven {
+    	url = "https://bai.jfrog.io/artifactory/maven"
+   	}
+    maven { url 'https://aperlambda.github.io/maven'}
+}
+
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.devtech:arrp:${project.arrp_version}"
+        modImplementation "io.github.onyxstudios:Cardinal-Components-API:${project.cardinal_components_version}"
+        include "io.github.onyxstudios:Cardinal-Components-API:${project.cardinal_components_version}"
+        modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+        modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+        include "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+        modApi "me.shedaniel.cloth.api:cloth-common-events-v1:${project.cloth_api_version}"
+        include "me.shedaniel.cloth.api:cloth-common-events-v1:${project.cloth_api_version}"
+        modImplementation "mcp.mobius.waila:wthit-fabric:${project.hwyla_version}"
+        //modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}"
+        //include "me.sargunvohra.mcmods:autoconfig1u:${project.auto_config_version}"
+        modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+        modImplementation "curse.maven:kubejs-395864:${project.kubejs_file}"
+        modImplementation "curse.maven:architectury-fabric-419697:${project.architectury_file}"
+        modRuntime "curse.maven:rhino-416294:${project.rhino_file}"
+        modImplementation "curse.maven:thing-352659:3038506"
+        modImplementation "io.github.cottonmc:cotton-client-commands:1.0.1+1.16-rc1"
+        modImplementation("com.github.Draylar:magna:${project.magna_version}") {
+            exclude(group: "io.github.prospector")
+            exclude(group: "me.shedaniel.cloth")
+        }
+        modImplementation "com.github.lambdaurora:spruceui:2.1.4-1.16"
 
-        // Fabric API. This is technically optional, but you probably want it anyway.
+        modImplementation("alexiil.mc.lib:libblockattributes-all:0.8.8")
+        modRuntime "appeng:appliedenergistics2-fabric:${project.appeng_version}"
+        //modRuntime "com.github.Mixinors.Astromine:astromine:${project.astromine_commit}"
+
+
+
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    
+
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
 }
@@ -55,21 +212,14 @@ jar {
     from "LICENSE"
 }
 
-// configure the maven publication
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
+// configure  mavenJava(MavenPublication) {
             // add all the jars that should be included when publishing to maven
             artifact(remapJar) {
                 builtBy remapJar
             }
             artifact(sourcesJar) {
                 builtBy remapSourcesJar
-            }
-        }
-    }
-
-    // select the repositories you want to publish to
+        sh t    // DONT REMOE PLS WAITo
     repositories {
         // uncomment to publish to the local maven
         // mavenLocal()
