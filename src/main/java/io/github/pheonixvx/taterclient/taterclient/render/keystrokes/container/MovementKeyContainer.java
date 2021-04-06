@@ -1,25 +1,22 @@
 package io.github.pheonixvx.taterclient.taterclient.render.keystrokes.container;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.pheonixvx.taterclient.taterclient.render.keystrokes.RenderableBlock;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.math.MatrixStack;
 
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-
-public class KeyContainer implements Container {
+public class MovementKeyContainer implements Container {
 	private final RenderableBlock block;
 	private final KeyBinding key;
+	private final String text;
 	private final TextRenderer textRenderer;
 	private int color;
 
-	public KeyContainer(KeyBinding key, int left, int width, int top, int height) {
+	public MovementKeyContainer(KeyBinding key, int left, int width, int top, int height, String text) {
 		this.key = key;
+		this.text = text;
 		this.block = new RenderableBlock(left, left + width, top, top + height);
 		this.textRenderer = MinecraftClient.getInstance().textRenderer;
 	}
@@ -39,7 +36,7 @@ public class KeyContainer implements Container {
 		matrices.translate(10.5, 6.5, 0);
 		this.block.drawString(
 				matrices,
-				GLFW.glfwGetKeyName(KeyBindingHelper.getBoundKeyOf(key).getCode(), -1).toUpperCase(),
+				text,
 				textRenderer,
 				false,
 				true,
