@@ -13,9 +13,6 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.pheonixvx.taterclient.taterclient.client.TaterClientClient"
-    ],
-    "main": [
       "io.github.pheonixvx.taterclient.taterclient.TaterClient"
     ]
   },

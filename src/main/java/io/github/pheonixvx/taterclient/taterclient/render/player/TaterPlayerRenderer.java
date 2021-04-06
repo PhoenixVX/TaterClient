@@ -1,4 +1,4 @@
-package io.github.pheonixvx.taterclient.taterclient.client;
+package io.github.pheonixvx.taterclient.taterclient.render.player;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -17,14 +17,16 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRend
 import net.minecraft.util.Identifier;
 import net.minecraft.client.render.TexturedRenderLayers;
 
+import static io.github.pheonixvx.taterclient.taterclient.TaterClient.id;
+
 public class TaterPlayerRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
-	static void register() {
+	public static void register() {
 		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper) -> {
 			registrationHelper.register(new TaterPlayerRenderer((PlayerEntityRenderer) entityRenderer));
 		});
 	}
 
-	private static final Identifier TATER_MODEL = TaterClient.id("tater");
+	private static final Identifier TATER_MODEL = id("tater");
 
 	public TaterPlayerRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
 		super(context);
